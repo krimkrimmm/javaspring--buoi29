@@ -1,13 +1,11 @@
 package vn.scrip.buoi29.entity;
-
 import vn.scrip.buoi29.model.enums.MovieType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
+import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,6 +14,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "movies")
+
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,8 +66,19 @@ public class Movie {
     @ManyToMany
     @JoinTable(
             name = "movies_directors",
+
+
+
+
+
+
+
+
+
+
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "director_id")
     )
     List<Director> directors;
 }
+

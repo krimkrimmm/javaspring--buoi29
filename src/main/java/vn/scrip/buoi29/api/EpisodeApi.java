@@ -1,38 +1,28 @@
 package vn.scrip.buoi29.api;
-import vn.scrip.buoi29.model.request.CreateEpisodeRequest;
-import vn.scrip.buoi29.model.request.UpdateEpisodeRequest;
-import vn.scrip.buoi29.service.EpisodeService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.scrip.buoi29.model.request.CreateEpisodeRequest;
+import vn.scrip.buoi29.model.request.UpdateEpisodeRequest;
+
+import vn.scrip.buoi29.service.EpisodeService;
 @RestController
-@RequestMapping("api/admin/episodes")
+@RequestMapping("/api/episodes")
 @RequiredArgsConstructor
 public class EpisodeApi {
     private final EpisodeService episodeService;
-    @GetMapping()
-    ResponseEntity<?> getAllEpisodesByMovie(@RequestParam Integer movieId,
-
-                                            @RequestParam(defaultValue = "1") Integer page,
-                                            @RequestParam(defaultValue = "10") Integer pageSize) {
-        return ResponseEntity.ok(episodeService.getEpisodeListOfMovieByAdmin(movieId, page, pageSize));
-    }
-
+    // Tạo mới tập phim
     @PostMapping
-    ResponseEntity<?> createEpisode(@Valid @RequestBody CreateEpisodeRequest request) {
+    public ResponseEntity<?> createEpisode(@RequestBody CreateEpisodeRequest request) {
+
+        // Gọi service để tạo tập phim mới
         return ResponseEntity.ok(episodeService.createEpisode(request));
     }
-
+    // Cập nhật tập phim theo ID
     @PutMapping("/{id}")
-    ResponseEntity<?> updateEpisode(@Valid @RequestBody UpdateEpisodeRequest request, @PathVariable Integer id) {
+    public ResponseEntity<?> updateEpisode(@PathVariable Integer id, @RequestBody UpdateEpisodeRequest request) {
+        // Gọi service để cập nhật tập phim
         return ResponseEntity.ok(episodeService.updateEpisode(id, request));
     }
-
-    @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteEpisode(@PathVariable Integer id) {
-        episodeService.deleteEpisode(id);
-        return ResponseEntity.ok().build();
-    }
 }
+

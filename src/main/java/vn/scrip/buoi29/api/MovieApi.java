@@ -24,12 +24,12 @@ public class MovieApi {
         return ResponseEntity.ok(movieService.createMovie(request));
     }
 
+
     @PutMapping("/{id}")
     ResponseEntity<?> updateMovie(@Valid @RequestBody UpsertMovieRequest request,
                                   @PathVariable Integer id) {
         return ResponseEntity.ok(movieService.updateMovie(id, request));
     }
-
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteMovie(@PathVariable Integer id) {
         movieService.deleteMovie(id);

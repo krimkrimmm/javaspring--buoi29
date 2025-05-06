@@ -9,11 +9,3 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findByRole(UserRole userRole);
     Optional<User> findByEmail(String email);
 }
-
-
-
-
-
-
-
-

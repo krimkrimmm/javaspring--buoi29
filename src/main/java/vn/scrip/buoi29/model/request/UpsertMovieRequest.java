@@ -1,3 +1,4 @@
+
 package vn.scrip.buoi29.model.request;
 import vn.scrip.buoi29.model.enums.MovieType;
 import jakarta.validation.constraints.NotEmpty;
